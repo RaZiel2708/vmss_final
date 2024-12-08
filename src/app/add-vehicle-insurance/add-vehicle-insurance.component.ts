@@ -2,6 +2,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VehicleInsuranceService } from '../services/add-insurance.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from '../components/success-dialog/success-dialog.component';
+import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
+
 
 @Component({
   selector: 'app-add-vehicle-insurance',
@@ -12,7 +16,7 @@ import { VehicleInsuranceService } from '../services/add-insurance.service';
 export class AddVehicleInsuranceComponent {
   insuranceForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private insuranceService: VehicleInsuranceService) {
+  constructor(private fb: FormBuilder, private insuranceService: VehicleInsuranceService, private dialog: MatDialog) {
     this.insuranceForm = this.fb.group({
       vehicleNo: ['', Validators.required],
       make: ['', Validators.required],
@@ -27,14 +31,18 @@ export class AddVehicleInsuranceComponent {
     if (this.insuranceForm.valid) {
       this.insuranceService.addInsurance(this.insuranceForm.value).subscribe({
         next: (response: any) => {
-          console.log('Success Response:', response);
-          alert('Insurance details added successfully!');
+          this.dialog.open(SuccessDialogComponent, {
+            data: { message: 'Insurance details added successfully!' },
+            width: '300px',
+          });
           this.insuranceForm.reset();
         },
         error: (error: any) => {
-          console.error('Error Response:', error);
-          alert('An error occurred while adding insurance details.');
-        }
+          this.dialog.open(ErrorDialogComponent, {
+            data: { message: 'An error occurred while adding insurance details.' },
+            width: '300px',
+          });
+        },
       });
     }
   }

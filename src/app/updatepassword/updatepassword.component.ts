@@ -2,21 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdatepasswordService } from '../services/updatepassword.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from '../components/success-dialog/success-dialog.component';
+import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
+
 @Component({
   selector: 'app-updatepassword',
   standalone: false,
   templateUrl: './updatepassword.component.html',
   styleUrl: './updatepassword.component.css'
 })
-export class UpdatepasswordComponent implements OnInit{
+export class UpdatepasswordComponent implements OnInit {
   passwordForm: any;  // Ensure this is typed correctly
   loading = false;
-  errorMessage: string='';
+  errorMessage: string = '';
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private updatepasswordService: UpdatepasswordService
+    private updatepasswordService: UpdatepasswordService, private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -27,14 +31,14 @@ export class UpdatepasswordComponent implements OnInit{
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     }, { validator: this.passwordMatchValidator });
   }
-  
+
 
   passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
-    const newPassword = group.get('newPassword')?.value;  
-    const confirmPassword = group.get('confirmPassword')?.value;  
+    const newPassword = group.get('newPassword')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
     return newPassword === confirmPassword ? null : { 'passwordMismatch': true };
   }
-  
+
 
   onSubmit() {
     if (this.passwordForm.invalid) {
@@ -46,7 +50,11 @@ export class UpdatepasswordComponent implements OnInit{
     this.updatepasswordService.updatePassword(userId, currentPassword, newPassword).subscribe({
       next: (response) => {
         this.loading = false;
-        alert('Password updated successfully');
+        // alert('Password updated successfully');
+        this.dialog.open(SuccessDialogComponent, {
+          data: { message: 'Password updated successfully' },
+          width: '300px',
+        });
         this.router.navigateByUrl("/");
       },
       error: (error) => {

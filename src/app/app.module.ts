@@ -19,6 +19,10 @@ import { AdminComponent } from './admin/admin.component';
 import { RegisterUnderWriterComponent } from './register-under-writer/register-under-writer.component';
 import { DeleteComponent } from './delete/delete.component';
 import { SuccessComponent } from './success/success.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SuccessDialogComponent } from './components/success-dialog/success-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,9 @@ import { SuccessComponent } from './success/success.component';
     AdminComponent,
     RegisterUnderWriterComponent,
     DeleteComponent,
-    SuccessComponent
+    SuccessComponent,
+    SuccessDialogComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +48,10 @@ import { SuccessComponent } from './success/success.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule, // Import Angular modules here
-    RouterModule
+    RouterModule,
+    MatDialogModule,
   ],
-  providers: [UserService, UpdatepasswordService],
+  providers: [UserService, UpdatepasswordService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
