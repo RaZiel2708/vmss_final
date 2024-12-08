@@ -40,7 +40,9 @@ export class LoginComponent {
           } 
           if(this.userDetils.role=="user"){
             this.route.navigate(['/underwriter'])
-            
+          }
+          if(this.userDetils.password==="Employee123"){
+            this.route.navigate(['/updatepassword'])
           }
         },
         error:(error:any)=>{
