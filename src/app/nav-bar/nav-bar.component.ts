@@ -60,6 +60,15 @@ export class NavBarComponent implements OnInit {
       this.location.back();
     }
   }
+
+  navigateToHome(): void {
+    if (['/admin', '/delete', '/register-under-writer'].includes(this.currentUrl)) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/underwriter']);
+    }
+  }
+
   logout() {
     sessionStorage.clear();
   // this.isHomePage = true;

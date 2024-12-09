@@ -15,13 +15,14 @@
       </button>
       
       <!-- Logo (moved to center when back button is present) -->
-      <a *ngIf="!showBackButton" href="#" class="-m-1.2 p-1.2">
+      <a (click)="navigateToHome()" class="-m-1.2 p-1.2 cursor-pointer">
         <strong>
           <h1 class="text-lg/8 font-semibold text-white">
             V-SURE
           </h1>
         </strong>
       </a>
+      
     </div>
 
     <!-- Logo (for pages without back button) -->
