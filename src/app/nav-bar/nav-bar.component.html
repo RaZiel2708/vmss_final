@@ -15,7 +15,7 @@
       </button>
       
       <!-- Logo (moved to center when back button is present) -->
-      <a (click)="navigateToHome()" class="-m-1.2 p-1.2 cursor-pointer">
+      <a *ngIf="!showBackButton" (click)="navigateToHome()" class="-m-1.2 p-1.2 cursor-pointer">
         <strong>
           <h1 class="text-lg/8 font-semibold text-white">
             V-SURE
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Logo (for pages without back button) -->
-    <div *ngIf="showBackButton" class="flex lg:flex-1 justify-center z-10">
+    <div *ngIf="showBackButton" (click)="navigateToHome()" class="flex lg:flex-1 justify-center z-10">
       <a href="#" class="-m-1.2 p-1.2">
         <strong>
           <h1 class="text-lg/8 font-semibold text-white">
