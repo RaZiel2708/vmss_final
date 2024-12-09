@@ -35,21 +35,15 @@ export class NavBarComponent implements OnInit {
   }
 
   setNavbarClass(): void {
-    // Check if the current route is home page
-    this.isHomePage = this.router.url=="/";
-
+    this.isHomePage = this.router.url === "/";
+    this.currentUrl = this.router.url; // Update currentUrl
+  
     const excludedRoutes = ['/', '/admin', '/underwriter'];
-
-    // Set isBlackNavBar to true if the current route is not excluded
     this.isBlackNavBar = !excludedRoutes.includes(this.currentUrl);
-
-    // Set specific navbar states
     this.isAdminNavBar = this.currentUrl === '/admin';
     this.isUnderwriterNavBar = this.currentUrl === '/underwriter';
-
-    // Determine whether to show back button
     this.showBackButton = !excludedRoutes.includes(this.currentUrl);
-
+  
     console.log('Current URL:', this.currentUrl);
     console.log('isHomePage:', this.isHomePage);
     console.log('isBlackNavBar:', this.isBlackNavBar);
