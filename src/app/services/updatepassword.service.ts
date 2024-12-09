@@ -12,6 +12,6 @@ export class UpdatepasswordService {
 
     updatePassword(userId: number, confirmPassword: string, newPassword: string): Observable<any> {
     const body = { userId, newPassword }; // Only sending userId and newPassword
-    return this.http.post(`${this.baseUrl}/user/updatePassword`, body); // POST request
+    return this.http.post(`${this.baseUrl}/updatePassword`, body); // POST request
   }
 }
