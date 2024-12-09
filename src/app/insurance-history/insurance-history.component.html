@@ -23,6 +23,7 @@
         <p><strong>Start Date:</strong> {{ insurance.startDate | date:'mediumDate' }}</p>
         <p><strong>End Date:</strong> {{ insurance.endDate | date:'mediumDate' }}</p>
         <p><strong>Premium:</strong> ${{ insurance.premium | number:'1.2-2' }}</p>
+        <p><strong>Status:</strong> {{ insurance.endDate > currentDate ? 'Active' : 'Inactive' }}</p>
       </div>
     </div>
 

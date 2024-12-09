@@ -84,6 +84,12 @@
       >
         End Date is required.
       </div>
+      <div
+        *ngIf="insuranceForm.errors?.['invalidDateRange']"
+        class="text-xs text-red-500 mt-1"
+      >
+        End Date must be after Start Date.
+      </div>
     </div>
 
     <!-- Premium Amount -->
@@ -99,7 +105,7 @@
         *ngIf="insuranceForm.get('premiumAmount')?.touched && insuranceForm.get('premiumAmount')?.invalid"
         class="text-xs text-red-500 mt-1"
       >
-        Premium Amount is required and must be a number.
+        Premium Amount must be between 100 and 1,000,000.
       </div>
     </div>
 

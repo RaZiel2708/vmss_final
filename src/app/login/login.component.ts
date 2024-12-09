@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from '../components/success-dialog/success-dialog.component';
+import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
 
 
 @Component({
@@ -19,7 +22,7 @@ export class LoginComponent {
     name:'',
     password:''
   }
-  constructor(private http:HttpClient,private route:Router){}
+  constructor(private http:HttpClient,private route:Router,private dialog: MatDialog){}
   btn(){
     if(this.user.name!="" && this.user.password!=""){
       this.http.post(`http://localhost:8081/login/${this.user.name}/${this.user.password}`,null)
@@ -45,9 +48,12 @@ export class LoginComponent {
             this.route.navigate(['/updatepassword'])
           }
         },
-        error:(error:any)=>{
-          console.log(error)
-        }
+        error: (error: any) => {
+          this.dialog.open(ErrorDialogComponent, {
+            data: { message: 'The Username or email is incorrect, Please try again.' },
+            width: '300px',
+          });
+        },
       })
     } 
     // else {

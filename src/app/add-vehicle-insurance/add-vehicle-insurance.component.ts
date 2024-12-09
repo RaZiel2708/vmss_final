@@ -1,11 +1,9 @@
-
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { VehicleInsuranceService } from '../services/add-insurance.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../components/success-dialog/success-dialog.component';
 import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
-
 
 @Component({
   selector: 'app-add-vehicle-insurance',
@@ -18,13 +16,31 @@ export class AddVehicleInsuranceComponent {
 
   constructor(private fb: FormBuilder, private insuranceService: VehicleInsuranceService, private dialog: MatDialog) {
     this.insuranceForm = this.fb.group({
-      vehicleNo: ['', Validators.required],
-      make: ['', Validators.required],
-      model: ['', Validators.required],
+      vehicleNo: ['', [Validators.required, Validators.minLength(1)]],
+      make: ['', [Validators.required, Validators.minLength(1)]],
+      model: ['', [Validators.required, Validators.minLength(1)]],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      premiumAmount: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
-    });
+      premiumAmount: ['', [
+        Validators.required, 
+        Validators.min(100), 
+        Validators.max(1000000),
+        Validators.pattern(/^\d+$/)
+      ]]
+    }, { validators: this.dateRangeValidator });
+  }
+
+  // Custom validator to ensure end date is not before start date
+  dateRangeValidator(group: AbstractControl): ValidationErrors | null {
+    const startDate = group.get('startDate');
+    const endDate = group.get('endDate');
+
+    if (startDate && endDate && startDate.value && endDate.value) {
+      return new Date(startDate.value) > new Date(endDate.value) 
+        ? { invalidDateRange: true } 
+        : null;
+    }
+    return null;
   }
 
   onSubmit() {

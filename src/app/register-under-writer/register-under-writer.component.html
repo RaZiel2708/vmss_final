@@ -1,27 +1,29 @@
 <div class="form-container-horizontal">
-  
-    <form (ngSubmit)="onSubmit()" #form="ngForm">
-      <!-- Name -->
-      <div class="form-group">
-      <label for="name">Name</label>
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name*</label>
       <input
         type="text"
         id="name"
         name="name"
         [(ngModel)]="underwriter.name"
         placeholder="Enter your name"
-        required 
-        #name1="ngModel"
-       
+        required
+        minlength="4"
+        pattern="^[A-Za-z\s]+$"
+        #name="ngModel"
       />
-      <div *ngIf="name1.invalid && name1.touched" class="error">
-          Name is Required.
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        <div *ngIf="name.errors?.['required']">Name is required.</div>
+        <div *ngIf="name.errors?.['minlength']">Name must be at least 4 characters long.</div>
+        <div *ngIf="name.errors?.['pattern']">Name must contain only alphabetic characters.</div>
       </div>
-      </div>
-  
-      <!-- Date of Birth -->
-      <div class="form-group">
-      <label for="dob">Date of Birth</label>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="form-group">
+      <label for="dob">Date of Birth*</label>
       <input
         type="date"
         id="dob"
@@ -29,68 +31,77 @@
         [(ngModel)]="underwriter.dob"
         required
         #dob="ngModel"
-        
       />
-      <div *ngIf="dob.invalid && dob.touched" class="error">
-          DOB Required
+      <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="error">
+        Date of Birth is required.
       </div>
-      
-      </div>
-  
-      <!-- Gender -->
-      <div class="form-group">
-      <label for="gender">Gender</label>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender*</label>
       <select
         id="gender"
         name="gender"
         [(ngModel)]="underwriter.gender"
         required
-        #gender="ngModel" 
+        #gender="ngModel"
       >
         <option value="">Select Gender</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
-      <div *ngIf="gender.invalid && gender.touched" class="error">
-          gender Required
+      <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="error">
+        Gender is required.
       </div>
-  </div>
-      <!-- Address -->
-      <div class="form-group">
-      <label for="address">Address</label>
+    </div>
+
+    <!-- Address -->
+    <div class="form-group">
+      <label for="address">Address*</label>
       <textarea
         id="address"
         name="address"
         [(ngModel)]="underwriter.address"
         placeholder="Enter your address"
         required
-       #address="ngModel"
+        #address="ngModel"
       ></textarea>
-      <div *ngIf="address.invalid && address.touched" class="error">
-          Address Required
+      <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error">
+        Address is required.
       </div>
-      </div>
-  
-  
-      <!-- Joining Date -->
-      <div class="form-group">
-      <label for="joiningDate">Joining Date</label>
+    </div>
+
+    <!-- Joining Date -->
+    <div class="form-group">
+      <label for="joiningDate">Joining Date*</label>
       <input
         type="date"
         id="joiningDate"
         name="doj"
         [(ngModel)]="underwriter.doj"
         required
-       
+        #doj="ngModel"
       />
-      
+      <div *ngIf="doj.invalid && (doj.dirty || doj.touched)" class="error">
+        Joining Date is required.
       </div>
-      <div class="form-group">
-      <!-- Submit Button -->
-      <button type="submit" [disabled]="form.invalid">Register</button>
+    </div>
+
+    <div class="form-group">
+      <button 
+        type="submit" 
+        [disabled]="form.invalid || 
+          name.invalid || 
+          dob.invalid || 
+          gender.invalid || 
+          address.invalid || 
+          doj.invalid"
+      >
+        Register
+      </button>
       <button type="button" (click)="onClick()">Back</button>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+  </form>
+</div>
