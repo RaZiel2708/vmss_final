@@ -14,7 +14,7 @@
       [ngClass]="{'card-future': insurance.endDate > currentDate, 'card-past': insurance.endDate <= currentDate}"
       class="insurance-card">
       <div class="card-header">
-        <h3><strong>Vehicle No.:</strong>{{ insurance.vehicleNumber }}</h3>
+        <h3><strong>Vehicle No: </strong>{{ insurance.vehicleNumber }}</h3>
       </div>
       <div class="card-body">
         <p><strong>Status:</strong> {{ insurance.endDate > currentDate ? 'Active' : 'Inactive' }}</p>

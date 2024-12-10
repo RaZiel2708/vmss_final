@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../components/success-dialog/success-dialog.component';
 import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-updatepassword',
@@ -29,9 +30,30 @@ export class UpdatepasswordComponent implements OnInit {
     this.passwordForm = this.fb.group({
       userId: ['', [Validators.required, Validators.min(1)]],
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6), this.passwordComplexityValidator]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     }, { validator: this.passwordMatchValidator });
+  }
+
+  passwordComplexityValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+  
+    const hasUppercase = /[A-Z]/.test(value);
+    const hasLowercase = /[a-z]/.test(value);
+    const hasNumber = /[0-9]/.test(value);
+  
+    if (value.length < 6) {
+      return { passwordTooShort: true }; // Minimum length check
+    }
+  
+    if (!hasUppercase || !hasLowercase || !hasNumber) {
+      return { passwordComplexity: true }; // Complexity check
+    }
+  
+    return null;
   }
 
 
