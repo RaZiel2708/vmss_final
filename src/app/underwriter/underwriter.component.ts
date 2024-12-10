@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
   styleUrl: './underwriter.component.css'
 })
 export class UnderwriterComponent {
+  name:string |null=sessionStorage.getItem("name")
   constructor(private router:Router) {}
   ngOnInit(): void {
     const role = sessionStorage.getItem('role');
-    if (role !== 'underwriter') {
-      this.router.navigate(['/login']); // Redirect unauthorized users
-    }
+    // if (role !== 'underwriter') {
+    //   this.router.navigate(['/login']); // Redirect unauthorized users
+    // }
+
   }
 }

@@ -21,7 +21,6 @@ interface Insurance {
   // Remove imports: [] configuration
 })
 export class InsuranceHistoryComponent implements OnInit {
-  // Rest of the code remains the same as before
   insurances: Insurance[] = [];
   users: any = [];
   isLoading = true;
@@ -62,8 +61,9 @@ export class InsuranceHistoryComponent implements OnInit {
   searchInsurances() {
     const term = this.searchTerm.toLowerCase().trim();
     this.filteredInsurances = this.insurances.filter(insurance =>
-      insurance.vehicleNumber.toLowerCase().includes(term)
+      (insurance.vehicleNumber||'').toLowerCase().includes(term)
     );
+    console.log(this.filteredInsurances,"qwertyui");
   }
 
   clearSearch() {

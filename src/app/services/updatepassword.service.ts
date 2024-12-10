@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
 })
 
 export class UpdatepasswordService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8081';
   constructor(private http: HttpClient) { }
 
-    updatePassword(userId: number, confirmPassword: string, newPassword: string): Observable<any> {
-    const body = { userId, newPassword }; // Only sending userId and newPassword
-    return this.http.post(`${this.baseUrl}/updatePassword`, body); // POST request
+    updatePassword(userId: string| null,  newPassword: string|null): Observable<any> {
+    return this.http.get(`${this.baseUrl}/update/${userId}/${newPassword}`);
   }
 }

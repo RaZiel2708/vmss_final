@@ -44,9 +44,10 @@ export class LoginComponent {
           if(this.userDetils.role=="user"){
             this.route.navigate(['/underwriter'])
           }
-          if(this.userDetils.password==="Employee123"){
-            this.route.navigate(['/updatepassword'])
-          }
+        //   this.router.navigate(['/admin']);
+        //   if(this.userDetils.password==="Employee123"){
+        //    this.route.navigate(['/updatepassword'])
+        //  }
         },
         error: (error: any) => {
           this.dialog.open(ErrorDialogComponent, {

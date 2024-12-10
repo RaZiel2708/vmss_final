@@ -16,12 +16,12 @@ export class AddVehicleInsuranceComponent {
 
   constructor(private fb: FormBuilder, private insuranceService: VehicleInsuranceService, private dialog: MatDialog) {
     this.insuranceForm = this.fb.group({
-      vehicleNo: ['', [Validators.required, Validators.minLength(1)]],
+      vehicleno: ['', [Validators.required, Validators.minLength(1)]],
       make: ['', [Validators.required, Validators.minLength(1)]],
       model: ['', [Validators.required, Validators.minLength(1)]],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      premiumAmount: ['', [
+      startdate: ['', Validators.required],
+      enddate: ['', Validators.required],
+      primiumAmount: ['', [
         Validators.required, 
         Validators.min(100), 
         Validators.max(1000000),
@@ -32,8 +32,8 @@ export class AddVehicleInsuranceComponent {
 
   // Custom validator to ensure end date is not before start date
   dateRangeValidator(group: AbstractControl): ValidationErrors | null {
-    const startDate = group.get('startDate');
-    const endDate = group.get('endDate');
+    const startDate = group.get('startdate');
+    const endDate = group.get('enddate');
 
     if (startDate && endDate && startDate.value && endDate.value) {
       return new Date(startDate.value) > new Date(endDate.value) 

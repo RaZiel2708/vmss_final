@@ -16,6 +16,8 @@ export class UpdatepasswordComponent implements OnInit {
   passwordForm: any;  // Ensure this is typed correctly
   loading = false;
   errorMessage: string = '';
+  id:string|null=sessionStorage.getItem("id");
+  password:string|null=''
 
   constructor(
     private router: Router,
@@ -41,26 +43,24 @@ export class UpdatepasswordComponent implements OnInit {
 
 
   onSubmit() {
-    if (this.passwordForm.invalid) {
-      return;
-    }
+    // if (this.passwordForm.invalid) {
+    //   return;
+    // }
 
     const { userId, currentPassword, newPassword } = this.passwordForm.value;
     this.loading = true;
-    this.updatepasswordService.updatePassword(userId, currentPassword, newPassword).subscribe({
+    this.updatepasswordService.updatePassword(this.id,this.password).subscribe({
       next: (response) => {
         this.loading = false;
-        // alert('Password updated successfully');
+         alert('Password updated successfully');
         this.dialog.open(SuccessDialogComponent, {
-          data: { message: 'Password updated successfully' },
-          width: '300px',
         });
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/underwriter");
       },
       error: (error) => {
         this.loading = false;
         this.errorMessage = 'Failed to update password';
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/underwriter");
       }
     });
   }

@@ -3,15 +3,15 @@
   <form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()" class="w-full space-y-3">
     <!-- Vehicle Number -->
     <div class="flex flex-col">
-      <label for="vehicleNo" class="mb-1 text-sm font-medium text-gray-700">Vehicle Number</label>
+      <label for="vehicleno" class="mb-1 text-sm font-medium text-gray-700">Vehicle Number</label>
       <input
-        id="vehicleNo"
+        id="vehicleno"
         type="text"
-        formControlName="vehicleNo"
+        formControlName="vehicleno"
         class="border rounded-md p-1 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
       <div
-        *ngIf="insuranceForm.get('vehicleNo')?.touched && insuranceForm.get('vehicleNo')?.invalid"
+        *ngIf="insuranceForm.get('vehicleno')?.touched && insuranceForm.get('vehicleno')?.invalid"
         class="text-xs text-red-500 mt-1"
       >
         Vehicle Number is required.
@@ -54,15 +54,15 @@
 
     <!-- Start Date -->
     <div class="flex flex-col">
-      <label for="startDate" class="mb-1 text-sm font-medium text-gray-700">Start Date</label>
+      <label for="startdate" class="mb-1 text-sm font-medium text-gray-700">Start Date</label>
       <input
-        id="startDate"
+        id="startdate"
         type="date"
-        formControlName="startDate"
+        formControlName="startdate"
         class="border rounded-md p-1 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
       <div
-        *ngIf="insuranceForm.get('startDate')?.touched && insuranceForm.get('startDate')?.invalid"
+        *ngIf="insuranceForm.get('startdate')?.touched && insuranceForm.get('startdate')?.invalid"
         class="text-xs text-red-500 mt-1"
       >
         Start Date is required.
@@ -71,15 +71,15 @@
 
     <!-- End Date -->
     <div class="flex flex-col">
-      <label for="endDate" class="mb-1 text-sm font-medium text-gray-700">End Date</label>
+      <label for="enddate" class="mb-1 text-sm font-medium text-gray-700">End Date</label>
       <input
-        id="endDate"
+        id="enddate"
         type="date"
-        formControlName="endDate"
+        formControlName="enddate"
         class="border rounded-md p-1 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
       <div
-        *ngIf="insuranceForm.get('endDate')?.touched && insuranceForm.get('endDate')?.invalid"
+        *ngIf="insuranceForm.get('enddate')?.touched && insuranceForm.get('enddate')?.invalid"
         class="text-xs text-red-500 mt-1"
       >
         End Date is required.
@@ -94,15 +94,15 @@
 
     <!-- Premium Amount -->
     <div class="flex flex-col">
-      <label for="premiumAmount" class="mb-1 text-sm font-medium text-gray-700">Premium Amount</label>
+      <label for="primiumAmount" class="mb-1 text-sm font-medium text-gray-700">Premium Amount</label>
       <input
-        id="premiumAmount"
+        id="primiumAmount"
         type="number"
-        formControlName="premiumAmount"
+        formControlName="primiumAmount"
         class="border rounded-md p-1 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
       <div
-        *ngIf="insuranceForm.get('premiumAmount')?.touched && insuranceForm.get('premiumAmount')?.invalid"
+        *ngIf="insuranceForm.get('primiumAmount')?.touched && insuranceForm.get('primiumAmount')?.invalid"
         class="text-xs text-red-500 mt-1"
       >
         Premium Amount must be between 100 and 1,000,000.
