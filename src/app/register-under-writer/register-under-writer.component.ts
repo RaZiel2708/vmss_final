@@ -28,6 +28,9 @@ export class RegisterUnderWriterComponent {
     // Initialize the maxDate to today's date in YYYY-MM-DD format
     const today = new Date();
     this.maxDate = today.toISOString().split('T')[0];
+    
+    // Automatically set the joining date to today's date
+    this.underwriter.doj = this.maxDate;
   }
 
   onSubmit(form: NgForm) {
