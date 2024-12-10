@@ -75,10 +75,9 @@ export class DeleteComponent {
     this.errorMessage = '';
 
     const apiUrl = `http://localhost:8081/searchByid/${this.underWriterId}`;
-    console.log(this.underWriterId)
+    console.log(this.underWriterId);
     this.http.get(apiUrl, { responseType: 'text' }).subscribe({
       next: (response) => {
-
         this.check = true
         this.user = response
         this.user = JSON.parse(response);

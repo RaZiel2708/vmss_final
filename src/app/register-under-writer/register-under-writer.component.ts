@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-register-under-writer',
   standalone: false,
   templateUrl: './register-under-writer.component.html',
-  styleUrl: './register-under-writer.component.css'
+  styleUrls: ['./register-under-writer.component.css']
 })
 export class RegisterUnderWriterComponent {
   underwriter = {
@@ -20,19 +20,26 @@ export class RegisterUnderWriterComponent {
     address: '',
     doj: ''
   };
+  
+  // Maximum date for date of birth
+  maxDate: string;
 
-  constructor(private http: HttpClient, private route: Router, private dialog: MatDialog) { }
+  constructor(private http: HttpClient, private route: Router, private dialog: MatDialog) {
+    // Initialize the maxDate to today's date in YYYY-MM-DD format
+    const today = new Date();
+    this.maxDate = today.toISOString().split('T')[0];
+  }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      const apiUrl = "http://localhost:8081/addUnderWritter"
+      const apiUrl = "http://localhost:8081/addUnderWritter";
       this.http.post(apiUrl, this.underwriter).subscribe(
         (response) => {
           this.dialog.open(SuccessDialogComponent, {
             data: { message: 'Underwriter registered successfully' },
             width: '300px',
           });
-          this.route.navigate(['/success'], { state: this.underwriter })
+          this.route.navigate(['/success'], { state: this.underwriter });
         },
         (error) => {
           this.dialog.open(ErrorDialogComponent, {

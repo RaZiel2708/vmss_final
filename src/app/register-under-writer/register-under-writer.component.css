@@ -1,83 +1,98 @@
 /* General Styling */
-/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Form Container */
-  .form-container-horizontal {
-    background-color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    margin-left: 33%;
-    margin-top: 5%;
-  }
-  
-  .form-container-horizontal h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Form Group */
-  .form-group {
-    display: flex;
-    align-items: center;
-    gap:5%;
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    flex: 0 0 150px; /* Set width for labels */
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    flex: 1; /* Input fields take the remaining space */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .form-group textarea {
-    resize: none;
-    height: 80px;
-  }
-  
-  /* Form Actions */
-  .form-actions {
-    text-align: center;
-  }
-  
-  form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background-color: #0056b3;
-  }
-  .error {
-    color: red;
-    font-size: 0.85rem;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form Container */
+.form-container-horizontal {
+  background-color: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  margin-left: 33%;
+  margin-top: 5%;
+}
+
+.form-container-horizontal h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 0 0 150px; /* Set width for labels */
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  flex: 1; /* Input fields take the remaining space */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* Highlight Invalid Fields */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+/* Form Actions */
+.form-actions {
+  text-align: center;
+}
+
+/* Submit Button */
+button.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Disabled Button Styling */
+button.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
