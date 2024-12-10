@@ -62,7 +62,7 @@ export class NavBarComponent implements OnInit {
   }
 
   navigateToHome(): void {
-    if (['/admin', '/delete', '/register-under-writer'].includes(this.currentUrl)) {
+    if (['/admin', '/delete', '/register-under-writer', '/viewunder'].includes(this.currentUrl)) {
       this.router.navigate(['/admin']);
     } else {
       this.router.navigate(['/underwriter']);

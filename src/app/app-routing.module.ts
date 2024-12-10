@@ -12,6 +12,7 @@ import { RegisterUnderWriterComponent } from './register-under-writer/register-u
 import { DeleteComponent } from './delete/delete.component';
 import { SuccessComponent } from './success/success.component';
 import { AuthGuard } from './auth.guard';
+import { ViewunderComponent } from './viewunder/viewunder.component';
 
 const routes: Routes = [
   { path: 'add-insurance', component: AddVehicleInsuranceComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'register-under-writer',component:RegisterUnderWriterComponent},
   {path:'delete',component:DeleteComponent},
   {path:'success',component:SuccessComponent},
+  {path:'viewunder', component:ViewunderComponent},
   { path: '**', redirectTo: '/login' }
   // { path: '', redirectTo: '/insurance-history', pathMatch: 'full' }
 ];
