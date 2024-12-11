@@ -17,7 +17,7 @@ export class UnderwriterService {
   }
 
   // Optionally, you can create a method for deleting the underwriter
-  deleteUnderwriter(id: string): Observable<void> {
-    return this.http.delete<void>(this.apiUrl+ `/deleteUnderWriter/${id}`);
-  }
+  // deleteUnderwriter(id: string): Observable<void> {
+  //   return this.http.delete<void>(this.apiUrl+ `/deleteUnderWriter/${id}`);
+  // }
 }

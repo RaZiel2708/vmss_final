@@ -24,11 +24,11 @@ export class ViewunderComponent implements OnInit {
     });
   }
 
-  // Delete an underwriter row
-  deleteUnderwriter(id: string): void {
-    this.underwriterService.deleteUnderwriter(id).subscribe(() => {
-      // Remove the deleted underwriter from the array
-      this.underwriters = this.underwriters.filter(underwriter => underwriter.id !== id);
-    });
-  }
+  // // Delete an underwriter row
+  // deleteUnderwriter(id: string): void {
+  //   this.underwriterService.deleteUnderwriter(id).subscribe(() => {
+  //     // Remove the deleted underwriter from the array
+  //     this.underwriters = this.underwriters.filter(underwriter => underwriter.id !== id);
+  //   });
+  // }
 }
