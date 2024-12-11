@@ -23,6 +23,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SuccessDialogComponent } from './components/success-dialog/success-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { ViewunderComponent } from './viewunder/viewunder.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
     SuccessComponent,
     SuccessDialogComponent,
     ErrorDialogComponent,
+    ViewunderComponent,
   ],
   imports: [
     BrowserModule,
